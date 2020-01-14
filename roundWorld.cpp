@@ -2,8 +2,6 @@
 #include "helper.h"
 #include "glm/glm.hpp"
 #include "glm/ext.hpp"
-//#include "glm/gtx/rotate_vector.hpp"
-//#include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtx/transform.hpp"
 
 #define SPEEDSTEP 0.01f
@@ -60,11 +58,11 @@ public:
     glm::mat4 mvp;
 
     Plane() {
-        this->position = glm::vec3(widthTexture / 2, widthTexture / 10, -(widthTexture / 4));
-        this->gaze = glm::vec3(0.0, 0.0, 1.0);
-        this->up = glm::vec3(0.0, 1.0, 0.0);
+        this->position = glm::vec3(0.0, 600.0 ,0.0);
+        this->gaze = glm::vec3(0.0, -1.0, 0.0);
+        this->up = glm::vec3(0.0, 0.0, 1.0);
         this->u = glm::vec3(-1.0, 0.0, 0.0);
-        this-> lightPosition = glm::vec3(widthTexture/2,100,heightTexture/2);
+        this-> lightPosition = glm::vec3(0.0,1600.0,0.0);
 
         this->ppAngle = 45.0;
         this->ppAspectRatio = 1;
@@ -185,11 +183,11 @@ public:
 
     void reset(){
       this->speed = 0;
-      this->position = glm::vec3(widthTexture / 2, widthTexture / 10, -(widthTexture / 4));
-      this->gaze = glm::vec3(0.0, 0.0, 1.0);
-      this->up = glm::vec3(0.0, 1.0, 0.0);
-      this->u = glm::vec3(-1.0, 0.0, 0.0);
-      this-> lightPosition = glm::vec3(widthTexture/2,100,heightTexture/2);
+         this->position = glm::vec3(0.0, 600.0 ,0.0);
+        this->gaze = glm::vec3(0.0, -1.0, 0.0);
+        this->up = glm::vec3(0.0, 0.0, 1.0);
+        this->u = glm::vec3(-1.0, 0.0, 0.0);
+        this-> lightPosition = glm::vec3(0.0,1600.0,0.0);
       this->ppAngle = 45.0;
       this->ppAspectRatio = 1;
       this->speed = 0.0;
@@ -256,43 +254,6 @@ public:
 Plane *plane;
 glm::vec3 *vertices;
 int triangleCount;
-
-
-GLuint SolidSphere( float radius, int slices, int stacks )
-{
-    using namespace glm;
-    using namespace std;
-
-    const float pi = 3.1415926535897932384626433832795f;
-    const float _2pi = 2.0f * pi;
-
-    glm::vec3 * positions;
-    glm::vec3 * normals;
-    glm::vec2 * textureCoords;
-    int suh = 0;
-    for( int i = 0; i <= stacks; ++i )
-    {
-        // V texture coordinate.
-        float V = i / (float)stacks;
-        float phi = V * pi;
-
-        for ( int j = 0; j <= slices; ++j )
-        {
-            // U texture coordinate.
-            float U = j / (float)slices;
-            float theta = U * _2pi;
-
-            float X = cos(theta) * sin(phi);
-            float Y = cos(phi);
-            float Z = sin(theta) * sin(phi);
-
-            positions[suh] = vec3( X, Y, Z) * radius ;
-            normals[suh] = vec3(X, Y, Z) ;
-            textureCoords[suh] = vec2(U, V );
-        }
-    }
-  }
-
 
 void prepareVertexData(int w, int h) {
     triangleCount = 2 * w * h;

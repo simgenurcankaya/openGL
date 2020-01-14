@@ -29,7 +29,7 @@ void main()
     // get texture value, compute height
     textureCoordinate = vec2( widthTexture-position.x/widthTexture, heightTexture-position.z/heightTexture );
     vec4 textureColor = texture(grayTexture, textureCoordinate);
-    float y = 0.2126 * textureColor.x + 0.7152 * textureColor.y + 0.0722 * textureColor.z;
+    float y = textureColor.x ;
     vec4 v = vec4(position.x, heightFactor * y,position.z, 1);
 
 
@@ -47,33 +47,32 @@ void main()
     nb1 = vec4(v.x - 1, 0, v.z - 1, 1);
     texCoord = vec2(widthTexture - nb1.x / widthTexture, heightTexture - nb1.z / heightTexture);
     texColor = texture(grayTexture, texCoord);
-    nb1.y = heightFactor * (0.2126 * texColor.x + 0.7152 * texColor.y + 0.0722 * texColor.z);
+    nb1.y = heightFactor * texColor.x;
 
     nb2 = vec4(v.x - 1, 0, v.z, 1);
     texCoord = vec2(widthTexture - nb2.x / widthTexture, heightTexture - nb2.z / heightTexture);
     texColor = texture(grayTexture, texCoord);
-    nb2.y = heightFactor * (0.2126 * texColor.x + 0.7152 * texColor.y + 0.0722 * texColor.z);
+    nb2.y = heightFactor * texColor.x;
 
     nb3 = vec4(v.x, 0, v.z - 1, 1);
     texCoord = vec2(widthTexture - nb3.x / widthTexture, heightTexture - nb3.z / heightTexture);
     texColor = texture(grayTexture, texCoord);
-    nb3.y = heightFactor * (0.2126 * texColor.x + 0.7152 * texColor.y + 0.0722 * texColor.z);
+    nb3.y = heightFactor * texColor.x ;
 
     nb4 = vec4(v.x, 0, v.z + 1, 1);
     texCoord = vec2(widthTexture - nb4.x / widthTexture, heightTexture - nb4.z / heightTexture);
     texColor = texture(grayTexture, texCoord);
-    nb4.y = heightFactor * (0.2126 * texColor.x + 0.7152 * texColor.y + 0.0722 * texColor.z);
+    nb4.y = heightFactor * texColor.x ;
 
     nb5 = vec4(v.x + 1, 0, v.z, 1);
     texCoord = vec2(widthTexture - nb5.x / widthTexture, heightTexture - nb5.z / heightTexture);
     texColor = texture(grayTexture, texCoord);
-    nb5.y = heightFactor * (0.2126 * texColor.x + 0.7152 * texColor.y + 0.0722 * texColor.z);
+    nb5.y = heightFactor * texColor.x;
 
     nb6 = vec4(v.x + 1, 0, v.z + 1, 1);
     texCoord = vec2(widthTexture - nb6.x / widthTexture, heightTexture - nb6.z / heightTexture);
     texColor = texture(grayTexture, texCoord);
-    nb6.y = heightFactor * (0.2126 * texColor.x + 0.7152 * texColor.y + 0.0722 * texColor.z);
-
+    nb6.y = heightFactor * texColor.x;
 
     vec3 norm = vec3(0,0,0);
     norm += cross(vec3(nb1-v), vec3(nb2-v));
