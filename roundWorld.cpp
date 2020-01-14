@@ -254,6 +254,52 @@ public:
 Plane *plane;
 glm::vec3 *vertices;
 int triangleCount;
+glm::vec3 *normals;
+glm::vec2 *texCoordinates;
+glm::vec3 *sphereVertices;
+
+void sphereCreate(){
+    int radius = 350;
+    int sectorCount = 125;  
+    int stackCount = 125;
+    float PI = 3.1415;
+
+    float x, y, z, xy;                              // vertex position
+    float nx, ny, nz, lengthInv = 1.0f / radius;    // vertex normal
+    float s, t;                                     // vertex texCoord
+
+    float sectorStep = 2 * PI / sectorCount;
+    float stackStep = PI / stackCount;
+    float sectorAngle, stackAngle;
+    
+    // for(int i = 0; i <= stackCount; ++i)
+    // {
+    //     stackAngle = PI / 2 - i * stackStep;        // starting from pi/2 to -pi/2
+    //     xy = radius * cosf(stackAngle);             // r * cos(u)
+    //     z = radius * sinf(stackAngle);              // r * sin(u)
+    //     int suh = 0;
+
+    //     for(int j = 0; j <= sectorCount; ++j)
+    //     {
+    //         sectorAngle = j * sectorStep;           
+
+    //         // vertex position (x, y, z)
+    //         x = xy * cosf(sectorAngle);             // r * cos(u) * cos(v)
+    //         y = xy * sinf(sectorAngle);             // r * cos(u) * sin(v)
+    //         sphereVertices[suh] = glm::vec3(x,y,z);
+    //         // normalized vertex normal (nx, ny, nz)
+    //         nx = x * lengthInv;
+    //         ny = y * lengthInv;
+    //         nz = z * lengthInv;
+    //         normals[suh] = glm::vec3(nx,ny,nz);
+
+    //         // vertex tex coord (s, t) range between [0, 1]
+    //         s = (float)j / sectorCount;
+    //         t = (float)i / stackCount;
+    //         texCoordinates[suh++] = glm::vec2(s,t);
+    //     }
+    // }
+}
 
 void prepareVertexData(int w, int h) {
     triangleCount = 2 * w * h;
@@ -428,7 +474,7 @@ int main(int argc, char *argv[]) {
     initShaders();
     glUseProgram(idProgramShader);
     initTexture(argv[1], argv[2], & widthTexture, & heightTexture,idProgramShader);
-
+    sphereCreate();
     prepareVertexData(widthTexture, heightTexture);
 
     plane = new Plane();

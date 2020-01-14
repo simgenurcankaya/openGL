@@ -292,8 +292,7 @@ void renderFunction() {
 
     glDrawArrays(GL_TRIANGLES, 0, triangleCount * 3);
 
-    glDisableClientState(GL_VERTEX_ARRAY);  // disable vertex arrays
-
+    glDisableClientState(GL_VERTEX_ARRAY);  
 }
 
 
@@ -372,7 +371,6 @@ static void keyCallback(GLFWwindow *window, int key, int scancode, int action, i
 
                 break;
             default:
-//                std::cout << "Pressed something unhandled." << std::endl;
                 break;
         }
     }
@@ -384,11 +382,6 @@ void windowSizeCallback(GLFWwindow *win, int width, int height) {
 }
 
 int main(int argc, char *argv[]) {
-
-    // if (argc != 2) {
-    //     printf("Please provide only a texture image\n");
-    //     exit(-1);
-    // }
 
     glfwSetErrorCallback(errorCallback);
 
@@ -444,7 +437,6 @@ int main(int argc, char *argv[]) {
         plane->move();
 
     }
-
 
     glfwDestroyWindow(win);
     glfwTerminate();
